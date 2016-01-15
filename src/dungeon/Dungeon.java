@@ -21,7 +21,7 @@ public class Dungeon extends JComponent {
     static final int DUNGEON_LENGTH = 100;
     static final int DUNGEON_HEIGHT = 100;
     static final int DUNGEON_ATTEMPS = 10000;
-    static final int DUNGEON_MIN_ROOMS = 150;//Not valid right now
+    static final int DUNGEON_MIN_ROOMS = 150;
     static final int ROOM_MIN_DIM = 3; //Smallest a room's length/height can be
     static final int ROOM_MAX_DIM = 10; //Largest a room's length/height can be
     static ArrayList<Room> rooms;
@@ -31,10 +31,9 @@ public class Dungeon extends JComponent {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
         rooms = new ArrayList<>();
         int lastTry = 0;
-        while (lastTry < DUNGEON_MIN_ROOMS) {
+        while (lastTry < DUNGEON_MIN_ROOMS) { //Keep trying to make the actual rooms in the dungeon until we have a sufficient number of rooms
             makeRects();
             lastTry = cullRects();
         }
@@ -54,13 +53,13 @@ public class Dungeon extends JComponent {
         frame.setVisible(true);
         frame.toFront();
         frame.setSize(PIX_SIZE * DUNGEON_LENGTH, PIX_SIZE * DUNGEON_HEIGHT + 22);
-        frame.repaint();
+        frame.repaint(); //Set up graphics
 
-        for (int x=0; x<DUNGEON_LENGTH; x++){
+        for (int x=0; x<DUNGEON_LENGTH; x++){ //Print out the map as a string
             for (int y = 0; y < DUNGEON_HEIGHT; y++) {
                 String s="*";
                 for (Room r : rooms){
-                    if (r.contains(x, y)){
+                    if (r.contains(x, y)){ 
                         s=r.getPos(x, y).toString();
                     }
                 }
