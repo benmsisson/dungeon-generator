@@ -56,29 +56,15 @@ public class Dungeon extends JComponent {
         frame.setSize(PIX_SIZE * DUNGEON_LENGTH, PIX_SIZE * DUNGEON_HEIGHT + 22);
         frame.repaint();
 
-        /*while (true) {
-         try {
-         Thread.sleep(1000);
-                
-         lastTry=0;
-         frame.repaint();
-         } catch (InterruptedException e) {
-         System.out.println("Interrupted");
-
-         }
-         }*/
         for (int x=0; x<DUNGEON_LENGTH; x++){
             for (int y = 0; y < DUNGEON_HEIGHT; y++) {
-                boolean inside=false;
                 String s="*";
                 for (Room r : rooms){
                     if (r.contains(x, y)){
-                    //    inside=true;
                         s=r.getPos(x, y).toString();
                     }
                 }
                 System.out.print(s);
-                //System.out.print(inside ? " " : "█" );
             }
             System.out.println();
         }
