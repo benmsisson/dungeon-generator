@@ -87,13 +87,13 @@ public class Dungeon extends JComponent {
     static private void makeRects() {
         int x = DUNGEON_ATTEMPS;
         rooms.clear();
-        while (x > 0) {
+        while (x > 0) { //Make a ton of rectangles until we fail to place a room enough times
             int length = rand.nextInt(ROOM_MAX_DIM - ROOM_MIN_DIM) + ROOM_MIN_DIM;
             int height = rand.nextInt(ROOM_MAX_DIM - ROOM_MIN_DIM) + ROOM_MIN_DIM;
             Room newRoom = new Room(rand.nextInt(DUNGEON_LENGTH - length), rand.nextInt(DUNGEON_HEIGHT - height), length, height, rand);
             boolean valid = true;
             for (Room r : rooms) {
-                if (r.intersects(newRoom)) {
+                if (r.intersects(newRoom)) { //Make sure they dont collide
                     valid = false;
                 }
             }
@@ -112,7 +112,7 @@ public class Dungeon extends JComponent {
         }
     }
 
-    static private int cullRects() {
+    static private int cullRects() { //Find the largest island
         int curID = 0;
         ArrayList<Room> headRooms = new ArrayList<>();
         for (Room r : rooms) {
@@ -134,7 +134,7 @@ public class Dungeon extends JComponent {
                 largestIndex = i;
             }
         }
-        for (int i = 0; i < newSize.length; i++) {
+        for (int i = 0; i < newSize.length; i++) { //Kill of all the smaller islands
             if (i != largestIndex) {
                 headRooms.get(i).kill(rooms);
             }

@@ -6,7 +6,7 @@ import java.util.Random;
  *
  * @author Ben
  */
-public class Door {
+public class Door { //Connects room1 to room2 through the rectangle of point1+point2
     private Room room1;
     private Point point1;
     private Room room2;
@@ -35,7 +35,7 @@ public class Door {
         return point2;
     }
     public boolean contains(Room r){
-        return room1==r||room2==r; //Not the best solution, but it should work
+        return room1==r||room2==r; //Reference equals works fine here
     }
     public boolean contains(Point p){
         return point1.equals(p)||point2.equals(p); 
